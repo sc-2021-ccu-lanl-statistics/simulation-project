@@ -222,7 +222,7 @@ COPY ./.bashrc /home/sim/.bashrc
 USER sim
 COPY ./basefiles /home/sim/basefiles
 COPY ./basefiles/sweeps /home/sim/basefiles/sweeps
-COPY ./basefiles/workloads /home/sim/basefiles/workloads
+COPY ./basefiles/workload_types /home/sim/basefiles/workload_types
 COPY ./basefiles/platforms /home/sim/basefiles/platforms
 USER root
 RUN chown -R sim:sim /home/sim/basefiles
