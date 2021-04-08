@@ -73,7 +73,7 @@ for exp in experiments:
         print("\n\n\n\n")
         
         for run in range(start,end+1,1):
-            run = "Run_" + str(number)
+            run = "Run_" + str(run)
             makespanFile = path+"/"+exp+"/"+job+"/"+run+"/output/expe-out/makespan.csv"
             if os.path.exists(makespanFile):
                 totalFiles+=1
@@ -90,6 +90,7 @@ for exp in experiments:
         count+=1
     for i in range(1,len(averages),1):
         print("\n\n\nNormalized makespan: "+str(averages[i]/averages[0]),flush=True)
+        print("\n\n",flush=True)
         
         
             
