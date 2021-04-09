@@ -20,10 +20,11 @@ This runs a simulation based on Workload2, WL2.csv.  It runs 2 simulations; both
 1490 nodes and 30,000 simulated jobs.  The first simulation is a baseline simulation
 with a system mean time between failure of 24 hours (i.e. a failure rate lambda_good = 1/24).
 The second simulation is 5x worse (lambda_bad = 5*lambda_good). This would correspond to
-Table 4 of the paper, rwo 2, column 3.
+Table 4 of the paper, row 2, column 3.
 
-After the simulation, at the very bottom is the normalized makespan.  It should be close to 1.31.
-This is saying that at 5x worse failures than baseline, the makespan is around 31% worse.
+After the simulation, at the very bottom is the normalized makespan.  It should (could) be close to 1.31.
+This means in this case that the makespan of the 5x less reliable system is around 31% worse compared to the baseline
+system.
 
 You may get some numbers that are not that close to 1.31 since the failures are random across
 nodes and time, as described in the paper. Due to this, we treated this 
