@@ -18,15 +18,20 @@ To run a single simulation and see it work, one only needs to run the following 
     
 This runs a simulation based on Workload2, WL2.csv.  It runs 2 simulations; both with
 1490 nodes and 30,000 simulated jobs.  The first simulation is a baseline simulation
-with a system mean time between failure of 24 hours.
-The second simulation is 5x worse than 24 hours.
+with a system mean time between failure of 24 hours (i.e. a failure rate lambda_good = 1/24).
+The second simulation is 5x worse (lambda_bad = 5*lambda_good). This would correspond to
+Table 4 of the paper, rwo 2, column 3.
 
 After the simulation, at the very bottom is the normalized makespan.  It should be close to 1.31.
 This is saying that at 5x worse failures than baseline, the makespan is around 31% worse.
 
-You may get some numbers that are not that close to 1.31 since the failures are random.  
-By running multiple runs of both the baseline and the 5x worse, you can get an average
-makespan and a closer result to 1.31. In our tests we run 1500 runs of each.
+You may get some numbers that are not that close to 1.31 since the failures are random across
+nodes and time, as described in the paper.
+Due to this, we treated this as a Monte Carlo simulation.  The results presented in the paper (Table 4) 
+are averaged across 1500 runs to determine the average makespan for the baseline system, and
+also 1500 additional runs to determine the average makespan for the less reliable system for a given workload. 
+Using these two averages we are able to calculate the average normalized makespans for each of the scenarios
+presented in Table 4 of the paper.
 
 If one wants to run the simulation again you must specify a different output folder.
     python3 run_simulation --output ~/experiments/___name___
