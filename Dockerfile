@@ -6,6 +6,7 @@ LABEL desc="Batsim simulator made ready"
 # get the right repos
 USER root
 RUN \
+    apt-get update
     groupadd ccu && \
     groupadd wheel && \
     useradd -d /home/sim -ms /bin/bash sim && \
