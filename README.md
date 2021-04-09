@@ -24,15 +24,16 @@ between failure of 24 hours (i.e. a failure rate lambda_good =
 1/24).  The second simulation is 5x worse (lambda_bad = 5*lambda_good).
 This would correspond to Table 4 of the paper, row 2, column 3.
 
-After the simulation, at the very bottom is the normalized makespan.
-It should (could) be close to 1.31.  This means in this case that
-the makespan of the 5x less reliable system is around 31% worse
+After the simulation, at the very bottom is the normalized makespan,
+which is what is presented in Table 4 of the paper. In this case,
+Table 4 shows 1.319.  This means that
+the makespan of the 5x less reliable system is around 31.9% worse
 compared to the baseline system.
 
-You may get some numbers that are not that close to 1.31 since the
+You will likely obtain a result that isn't exactly 1.319 (or necessarily even close) since the
 failures are random across nodes and time, as described in the
 paper. Due to this, we treated this as a Monte Carlo simulation.
-The results presented in the paper (Table 4) are averaged across
+The results presented in the paper in Table 4 are averaged across
 1500 runs to determine the average makespan for the baseline system,
 and also an additional 1500 runs to determine the average makespan
 for the less reliable system for a given workload.  Using these two
