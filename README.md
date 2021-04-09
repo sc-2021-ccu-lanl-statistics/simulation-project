@@ -155,5 +155,22 @@ etc...) and save as another file.  So for example, to keep everything
 the same except the avg-makespan (lets bump it to 20) then save as
 20_simulation.config and run it using:
     python3 run_simulation.py --config 20_simulation.config --output ~/experiments/20_simulation
+    
+Execution Environment 
+-------------------------
+
+For the results presented in our paper, we made use of a moderate number
+of cluster resources to help speedup our parameter sweeps, especially 
+in light of the number of trials (1500) that we performed per input 
+parameter set.  To ease the reproduciblity of our work, we've containerized
+our work here using Docker (as mentioned above), however there is no
+explicit parallelism in the containerized version of our work. 
+Consequently, we would expect that to fully reproduce our results using this
+container would likely take quite a long time.
+
+We tested this containerized version of our work on the following systems:
+
+1.  MacBookPro running OSX 10.15.7, 32GB RAM, 2.9GHz 6-core Intel Core i9, Docker version 20.10.5, build 55c4c88, Darwin Kernel Version 19.6.0: root:xnu-6153.141.16~1/RELEASE_X86_64 x86_64
+2.  
 
 ```
