@@ -26,12 +26,13 @@ After the simulation, at the very bottom is the normalized makespan.  It should 
 This is saying that at 5x worse failures than baseline, the makespan is around 31% worse.
 
 You may get some numbers that are not that close to 1.31 since the failures are random across
-nodes and time, as described in the paper.
-Due to this, we treated this as a Monte Carlo simulation.  The results presented in the paper (Table 4) 
+nodes and time, as described in the paper. Due to this, we treated this 
+as a Monte Carlo simulation.  The results presented in the paper (Table 4) 
 are averaged across 1500 runs to determine the average makespan for the baseline system, and
-also 1500 additional runs to determine the average makespan for the less reliable system for a given workload. 
-Using these two averages we are able to calculate the average normalized makespans for each of the scenarios
-presented in Table 4 of the paper.
+also an additional 1500 runs to determine the average makespan for the less reliable system for a given workload. 
+Using these two averages we compute the average normalized makespans for each of the scenarios
+presented in Table 4 of the paper, as the ratios of the average makespans for the less reliable 
+systems to the average makespans for the given baseline systems.
 
 If one wants to run the simulation again you must specify a different output folder.
     python3 run_simulation --output ~/experiments/___name___
@@ -39,17 +40,17 @@ If one wants to run the simulation again you must specify a different output fol
 If one wants to use different parameters you must specify a different config file
     python3 run_simulation --config sample.config --output ~/experiments/___name___
     
-The config file has a lot of parts to it, but for our purposes I will highlight a couple things you can do.
-I will start by showing you the config file that is in ~/basefiles/
+The config file has several moving parts, but for our purposes here, we will highlight a couple things you can do.
+We will start by addressing the config file that is in ~/basefiles/
 Notice it starts with the name of the overall experiment, "test". Most sweeps over parameters have 3 ways of
-doing them:
+being performed:
 
-there is the range:             "range":[1,2,3]                       This chooses one value in the list after the other 
+as values in a list:             "range":[1,2,3]                       This chooses one value in the list after the other 
 
-there is the min,max,step       "min":1,"max":3,"step":1              This starts at min, ends at max (inclusive)
+as a range with min,max,step:    "min":1,"max":3,"step":1              This starts at min, ends at max (inclusive)
                                                                       and increases or decreases by step each time
 
-and there is the "formula"      "formula":"1 * i","range":[500,600]   silly example as i is only multiplied by one.
+as the "formula"                 "formula":"1 * i","range":[500,600]  trival example as i is only multiplied by one.
 combined with both of the                                             But the idea is that you can use a variable "i" 
 above methods                                                         that the range or min/max/step replaces it with
  
@@ -90,8 +91,8 @@ above methods                                                         that the r
  }
 
 
-I'm not going to cover everything, but three obvious things include the SMTBF-sweep, the workload, as
-well as the output
+We do not cover every option here, but three typical parameters include the SMTBF-sweep, the workload, as
+well as the output.
 
 SMTBF
 -----
@@ -107,9 +108,9 @@ to be first in the list.
 
 Workload
 ---------
-Not going to cover everything, just that if you want to compare other workloads, edit the 
+If you want to compare and contrast the impact of using different workloads, edit the 
 "number-of-resources" and "duration-time" file to use, say wl3.csv instead.  It is currently at wl2.csv.
-You will need to change the amount of jobs in the workload to accomodate the different types of workloads.
+You may want to change the number of jobs used (pulled) from each workload to accomodate the different types of workloads.
 For example: a workload that is full of primarily small, short jobs will need more jobs in a given simulation.
 These are the numbers we use for amount of jobs:
 wl1 50,000
@@ -122,9 +123,10 @@ wl6    500
 
 Output
 --------
-AAE is the Average Application Efficiency.  You don't really need that.  It is outputted after every simulation.
-avg-makespan, on the other hand controls how many runs of each to do.  We recommend maybe 20. But again, keep in
-mind we do a whopping 1500 runs.
+AAE is the Average Application Efficiency.  This metric is not used/addressed in this paper submission but was
+of interest to us for studying the impact of checkpointing intervals, dump times and restart times. It is also produced after every simulation.
+The avg-makespan, on the other hand, controls how many runs of each to do.  We would recommend at least 20, but keep in
+mind we performed 1500 runs in order to ensure that our averages converged.
 
 
 Running With New Parameters
