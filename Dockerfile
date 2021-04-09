@@ -166,7 +166,7 @@ RUN \
 RUN \
     cd /home/sim/Downloads/batsim && \
     meson build --prefix=/usr/local/ --buildtype release && \
-    ninja -C build
+    ninja -j 4 -C build
     #mkdir /home/sim/Downloads/batsim/build && cd /home/sim/Downloads/batsim/build && \
     #
     #cmake -DCMAKE_PREFIX_PATH=/usr/local /home/sim/Downloads/batsim/ && make
@@ -193,7 +193,7 @@ USER sim
 RUN \
     cd /home/sim/Downloads/batsched && \
     meson build --prefix=/usr/local/ --buildtype release && \
-    ninja -C build
+    ninja -j 4 -C build
 USER root
 RUN \
     cd /home/sim/Downloads/batsched/ && \
