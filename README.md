@@ -44,12 +44,12 @@ normalized makespans for each of the scenarios presented in Table
 reliable systems to the average makespans for the given baseline
 systems.
 
-If one wants to run the simulation again you must specify a different
+To run the simulation again you must specify a different
 output folder.
 
     python3 run_simulation --output ~/experiments/___name___
 
-If one wants to use different parameters you must specify a different
+To use different parameters you must specify a different
 config file
 
     python3 run_simulation --config sample.config --output ~/experiments/___name___
