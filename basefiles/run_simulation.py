@@ -1,13 +1,13 @@
 """
 Usage:
-    run_simulation.py [--config PATH][--output PATH]
+    run_simulation.py [--config=config][--output=output]
     
 
 Options:
-    --config PATH        configuration file
+    --config=config      configuration file
                          [default: /home/sim/basefiles/1_simulation.config]
                     
-    --output PATH        output path
+    --output=output      output path
                          [default: /home/sim/experiments/simulation1]
     
 
