@@ -13,8 +13,9 @@ readme.txt
 To run a single simulation and see it work, one only needs to run the following commands:
     docker build . -t simulation
     docker create --name test_suite -t simulation
-    docker start -i test_suite
-    python3 run_simulation.py -i 1_simulation.config -o /home/sim/experiments/1_sim
+    docker start test_suite
+    docker exec -it test_suite /bin/bash
+    python3 run_simulation.py --config 1_simulation.config --output /home/sim/experiments/1_sim
     
 This runs a simulation based on Workload2, WL2.csv.  It runs 2
 simulations; both with 1490 nodes and 30,000 simulated jobs.  The
