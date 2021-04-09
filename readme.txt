@@ -1,8 +1,10 @@
-To run a single simulation and see it work, one only needs to run the following commands:
+To run a single simulation, execute the following commands:
+
     docker build . -t simulation
     docker create --name test_suite -t simulation
-    docker start -i test_suite
-    python3 run_simulation.py -i 1_simulation.config -o /home/sim/experiments/1_sim
+    docker start test_suite
+    docker exec -it test_suite /bin/bash
+    python3 run_simulation.py --config 1_simulation.config --output /home/sim/experiments/1_sim
     
 This runs a simulation based on Workload2, WL2.csv.  It runs 2
 simulations; both with 1490 nodes and 30,000 simulated jobs.  The
@@ -11,29 +13,33 @@ between failure of 24 hours (i.e. a failure rate lambda_good =
 1/24).  The second simulation is 5x worse (lambda_bad = 5*lambda_good).
 This would correspond to Table 4 of the paper, row 2, column 3.
 
-After the simulation, at the very bottom is the normalized makespan.
-It should (could) be close to 1.31.  This means in this case that
-the makespan of the 5x less reliable system is around 31% worse
-compared to the baseline system.
+After the simulation, at the very bottom is the normalized makespan,
+which is what is presented in Table 4 of the paper. In this case,
+Table 4 shows 1.319.  This means that the makespan of the 5x less
+reliable system is around 31.9% worse compared to the baseline
+system.
 
-You may get some numbers that are not that close to 1.31 since the
-failures are random across nodes and time, as described in the
-paper. Due to this, we treated this as a Monte Carlo simulation.
-The results presented in the paper (Table 4) are averaged across
-1500 runs to determine the average makespan for the baseline system,
-and also an additional 1500 runs to determine the average makespan
-for the less reliable system for a given workload.  Using these two
-averages we compute the average normalized makespans for each of
-the scenarios presented in Table 4 of the paper, as the ratios of
-the average makespans for the less reliable systems to the average
-makespans for the given baseline systems.
+You will likely obtain a result that isn't exactly 1.319 (or
+necessarily even close) since the failures are random across nodes
+and time, as described in the paper. Due to this, we treated this
+as a Monte Carlo simulation.  The results presented in the paper
+in Table 4 are averaged across 1500 runs to determine the average
+makespan for the baseline system, and also an additional 1500 runs
+to determine the average makespan for the less reliable system for
+a given workload.  Using these two averages we compute the average
+normalized makespans for each of the scenarios presented in Table
+4 of the paper, as the ratios of the average makespans for the less
+reliable systems to the average makespans for the given baseline
+systems.
 
 If one wants to run the simulation again you must specify a different
 output folder.
+
     python3 run_simulation --output ~/experiments/___name___
 
 If one wants to use different parameters you must specify a different
 config file
+
     python3 run_simulation --config sample.config --output ~/experiments/___name___
     
 The config file has several moving parts, but for our purposes here,
@@ -47,7 +53,7 @@ as values in a list:             "range":[1,2,3]                       This choo
 as a range with min,max,step:    "min":1,"max":3,"step":1              This starts at min, ends at max (inclusive)
                                                                       and increases or decreases by step each time
 
-as the "formula"                 "formula":"1 * i","range":[500,600]  trival example as i is only multiplied by one.
+as the "formula"                 "formula":"1 * i","range":[500,600]  trivial example as i is only multiplied by one.
 combined with both of the                                             But the idea is that you can use a variable "i" 
 above methods                                                         that the range or min/max/step replaces it with
  
@@ -109,7 +115,7 @@ If you want to compare and contrast the impact of using different
 workloads, edit the "number-of-resources" and "duration-time" file
 to use, say wl3.csv instead.  It is currently at wl2.csv.  You may
 want to change the number of jobs used (pulled) from each workload
-to accomodate the different types of workloads.  For example: a
+to accommodate the different types of workloads.  For example: a
 workload that is full of primarily small, short jobs will need more
 jobs in a given simulation.
 These are the numbers we use for amount of jobs:
@@ -140,5 +146,28 @@ file, make sure you have the file in correct json (commas,colons,braces,
 etc...) and save as another file.  So for example, to keep everything
 the same except the avg-makespan (lets bump it to 20) then save as
 20_simulation.config and run it using:
+
     python3 run_simulation.py --config 20_simulation.config --output ~/experiments/20_simulation
+    
+Execution Environment 
+-------------------------
+
+For the results presented in our paper, we made use of a moderate
+number of cluster resources to help speedup our parameter sweeps,
+especially in light of the number of trials (1500) that we performed
+per input parameter set.  To ease the reproducibility of our work,
+we've containerized our work here using Docker (as mentioned above),
+however there is no explicit parallelism in the containerized version
+of our work.  Consequently, we would expect that to fully reproduce
+our results using this container would likely take quite a long
+time.
+
+We tested this containerized version of our work on the following
+systems:
+
+1.  MacBookPro running OSX 10.15.7, 32GB RAM, 2.9GHz 6-core Intel
+Core i9, Docker version 20.10.5, build 55c4c88, Darwin Kernel Version
+19.6.0: root:xnu-6153.141.16~1/RELEASE_X86_64 x86_64
+
+2.  
 
