@@ -42,7 +42,8 @@ a given workload.  Using these two averages we compute the average
 normalized makespans for each of the scenarios presented in Table
 4 of the paper, as the ratios of the average makespans for the less
 reliable systems to the average makespans for the given baseline
-systems.
+systems. To exactly reproduce all of Table 4, please see the section
+below "Reproducing Table 4 Exactly".
 
 To run the simulation again you must specify a different
 output folder.
@@ -130,7 +131,9 @@ want to change the number of jobs used (pulled) from each workload
 to accommodate the different types of workloads.  For example: a
 workload that is full of primarily small, short jobs will need more
 jobs in a given simulation.
+
 These are the numbers we use for amount of jobs:
+
 wl1 50,000
 wl2 30,000
 wl3  5,000
@@ -161,6 +164,33 @@ the same except the avg-makespan (lets bump it to 20) then save as
 
     python3 run_simulation.py --config 20_simulation.config --output ~/experiments/20_simulation
     
+Reproducing Table 4 Exactly
+----------------------------
+
+In order to reproduce all of results in Table 4 with the same level
+of fidelity as presented in the paper, 54K Batsim simulations are 
+required. (6 workloads x 6 failure rates x 1500 runs per scenario)
+On system #1 (described below) a single run averages around 4 minutes,
+with a wide variation in timing depending on the input workload.
+While we ran this parameter sweep in a moderately sized cluster, the
+following command would reproduce Table 4 with a high degree of fidelity
+in the non parallelized Docker provided:
+
+    TODO -- Craig
+
+Experimentally Determined False Pass Rates
+---------------------------------------------
+
+In the paper, on page 8, second column, first full paragraph below
+Table 4 (starting on line 890), we address the false pass rate using 
+simulation to determine if we see the same rates predicted by the 
+analytic analysis in Section 3 of the paper.  To produce these
+results, we ran 20K Batsim simulations. These results can be reproduced
+by using the following command:
+    
+    TODO -- Craig put this here.
+
+
 Execution Environment 
 -------------------------
 
@@ -178,10 +208,12 @@ We tested this containerized version of our work on the following
 systems:
 
 1.  MacBookPro running OSX 10.15.7, 32GB RAM, 2.9GHz 6-core Intel
-Core i9, Docker version 20.10.5, build 55c4c88, Darwin Kernel Version
+Core i9, Docker version 20.10.5 build 55c4c88, Darwin Kernel Version
 19.6.0: root:xnu-6153.141.16~1/RELEASE_X86_64 x86_64
 
-2.  
+2. Asus Prime Z370-A, Linux, 32GB RAM, 3.6GHz 6-core Intel Core i5,
+Docker version 19.03.15 build 99e3ed89195c, OpenSuse Leap 15.2, 
+Kernel Version:5.3.18-lp152.50-default 
 
 
 ```
