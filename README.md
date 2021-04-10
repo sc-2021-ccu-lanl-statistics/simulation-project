@@ -48,12 +48,12 @@ below "Reproducing Table 4 Exactly".
 To run the simulation again you must specify a different
 output folder.
 
-    python3 run_simulation --output ~/experiments/___name___
+    python3 run_simulation --output ~/experiments/___folder_name___
 
 To use different parameters you must specify a different
 config file
 
-    python3 run_simulation --config sample.config --output ~/experiments/___name___
+    python3 run_simulation --config sample.config --output ~/experiments/___folder_name___
     
 The config file has several moving parts, but for our purposes here,
 we will highlight a couple things you can do.  We will start by
@@ -176,7 +176,11 @@ While we ran this parameter sweep in a moderately sized cluster, the
 following command would reproduce Table 4 with a high degree of fidelity
 in the non parallelized Docker provided:
 
-    TODO -- Craig
+    python3 run_simulation_table.py --config table_simulation.config  --output ~/experiments/table
+    
+A single run of all that is in the table is provided to see how the output would look
+
+    python3 run_simulation_table.py --config 1_table_simulation.config --output ~/experiments/table_1
 
 Experimentally Determined False Pass Rates
 ---------------------------------------------
@@ -187,8 +191,19 @@ simulation to determine if we see the same rates predicted by the
 analytic analysis in Section 3 of the paper.  To produce these
 results, we ran 20K Batsim simulations. These results can be reproduced
 by using the following command:
+
+For a 2x failure rate system 
+
+    python3 run_pass_fail.py --config pass_fail_2x_20000.config --output ~/experiments/pf2
+
+For a 5x failure rate system
+
+    python3 run_pass_fail.py --config pass_fail_5x_20000.config --output ~/experiments/pf5
     
-    TODO -- Craig put this here.
+An example with 40 runs can be evaluated with the 2x and 5x commands, respectively.
+
+    python3 run_pass_fail.py --config pass_fail_2x.config --output ~/experiments/pf2_40
+    python3 run_pass_fail.py --config pass_fail_5x.config --output ~/experiments/pf5_40
 
 
 Execution Environment 
