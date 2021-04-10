@@ -48,12 +48,12 @@ below "Reproducing Table 4 Exactly".
 To run the simulation again you must specify a different
 output folder.
 
-    python3 run_simulation --output ~/experiments/___folder_name___
+    python3 run_simulation.py --output ~/experiments/___folder_name___
 
 To use different parameters you must specify a different
 config file
 
-    python3 run_simulation --config sample.config --output ~/experiments/___folder_name___
+    python3 run_simulation.py --config sample.config --output ~/experiments/___folder_name___
     
 The config file has several moving parts, but for our purposes here,
 we will highlight a couple things you can do.  We will start by
