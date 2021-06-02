@@ -1,5 +1,16 @@
 Using a cluster for Monte Carlo simulation
 
+  We made use of a cluster at the NMC (New Mexico Consortium) to run all of our large-scale Monte Carlo Simulations.
+
+  To collece the cluster environment information, we ran the suggested ``collect_environment.sh'' script from:
+
+  https://github.com/SC-Tech-Program/Author-Kit
+
+  which produced the output that can be found in the file in this folder called:
+
+  ``cluster_environment.txt''
+
+
 The following files with their explanations were used to
 get values found in Table 4 of the paper:
 
