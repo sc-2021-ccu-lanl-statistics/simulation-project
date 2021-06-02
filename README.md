@@ -5,7 +5,10 @@ then type<br>
 `git clone https://github.com/sc-2021-ccu-lanl-statistics/simulation-project.git`<br>
 `cd simulation-project`<br>
 
+Note: Info about actual cluster version and associated scripts is detailed near
+the bottom of this document in the section "Execution Environment"
 
+Instructions for DOCKER Version:
 
 readme.txt
 
@@ -212,7 +215,29 @@ Execution Environment
 For the results presented in our paper, we made use of a moderate
 number of cluster resources to help speedup our parameter sweeps,
 especially in light of the number of trials (1500) that we performed
-per input parameter set.  To ease the reproducibility of our work,
+per input parameter set.  
+
+The actual cluster environment can be found in the file:
+
+    ./monte_carlo/cluster_environment.txt
+
+The job submission scripts and post-processing files that we used 
+can also be found in the folder:
+
+    ./monte_carlo
+
+These two READMEs would be useful for deploying our scripts on
+your own cluster:
+
+    ./monte_carlo/README_FILES.txt -- a description of what each script does
+    ./monte_carlo/README_HOW_TO_RUN.txt -- how to deploy 
+
+NOTE: To get these scripts to run on your own system may require
+some changes according to your own environment.
+
+DOCKER VERSION:
+
+To ease the reproducibility of our work,
 we've containerized our work here using Docker (as mentioned above),
 however there is no explicit parallelism in the containerized version
 of our work.  Consequently, we would expect that to fully reproduce
