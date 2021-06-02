@@ -8,7 +8,7 @@ then type<br>
 Note: Info about actual cluster version and associated scripts is detailed near
 the bottom of this document in the section "Execution Environment"
 
-Instructions for DOCKER Version:
+Instructions for DOCKER    Version:
 
 readme.txt
 
