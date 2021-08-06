@@ -1,5 +1,7 @@
 # simulation-project
 
+Workloads, scripts, docker environment, and Batsim patches necessary to recreate simulation results presented in the FTXS 2021 paper entitled "Statistical Framework for Two-Party Acceptance Testing of HPC Systems for Reliability"
+
 make sure git is installed as well as docker and that they are working correctly<br>
 then type<br>
 `git clone https://github.com/sc-2021-ccu-lanl-statistics/simulation-project.git`<br>
